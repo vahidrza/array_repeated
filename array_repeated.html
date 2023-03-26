@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="form" action="">
+      <input id="input" type="text" />
+      <button id="add">Add</button>
+      <button id="check">Check</button>
+    </form>
+    <p id="textarea"></p>
+    <script>
+      let form = document.getElementById("form");
+      let input = document.getElementById("input");
+      let add = document.getElementById("add");
+      let check = document.getElementById("check");
+      let textarea = document.getElementById("textarea");
+
+      let nums = [];
+
+      (() => {
+        let repeated = false;
+        form.addEventListener("click", (e) => {
+          if (e.target.id === "add") {
+            nums.push(input.value);
+            input.value = "";
+            textarea.innerHTML = `[${nums}]`;
+          } else if (e.target.id === "check") {
+            nums.map((number, index) => {
+              for (let i = index + 1; i <= nums.length; i++) {
+                if (number === nums[i]) {
+                  repeated = true;
+                }
+              }
+            });
+            console.log(repeated);
+          }
+          e.preventDefault();
+        });
+      })();
+    </script>
+  </body>
+</html>
